@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EjemploModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="ClientesID" />
+    </Key>
+    <Property Name="ClientesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CedulaCliente" Type="Int32" Nullable="false" />
+    <Property Name="NombreCliente" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClienteDesde" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="DireccionesClientes" Relationship="Self.FK_dbo_DireccionesClientes_dbo_Clientes_ClientesID" FromRole="Clientes" ToRole="DireccionesClientes" />
+    <NavigationProperty Name="Proyectos" Relationship="Self.FK_dbo_Proyectos_dbo_Clientes_ClientesID" FromRole="Clientes" ToRole="Proyectos" />
+  </EntityType>
+  <EntityType Name="Direcciones">
+    <Key>
+      <PropertyRef Name="DireccionesID" />
+    </Key>
+    <Property Name="DireccionesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CallePrincipal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CalleSecundaria" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Sector" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DireccionesClientes" Relationship="Self.FK_dbo_DireccionesClientes_dbo_Direcciones_Direcciones_DireccionesID" FromRole="Direcciones" ToRole="DireccionesClientes" />
+  </EntityType>
+  <EntityType Name="DireccionesClientes">
+    <Key>
+      <PropertyRef Name="DireccionesClientesID" />
+    </Key>
+    <Property Name="DireccionesClientesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientesID" Type="Int32" Nullable="false" />
+    <Property Name="DireccionesID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DireccionDesde" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Direcciones_DireccionesID" Type="Int32" />
+    <NavigationProperty Name="Clientes" Relationship="Self.FK_dbo_DireccionesClientes_dbo_Clientes_ClientesID" FromRole="DireccionesClientes" ToRole="Clientes" />
+    <NavigationProperty Name="Direcciones" Relationship="Self.FK_dbo_DireccionesClientes_dbo_Direcciones_Direcciones_DireccionesID" FromRole="DireccionesClientes" ToRole="Direcciones" />
+  </EntityType>
+  <EntityType Name="Proyectos">
+    <Key>
+      <PropertyRef Name="ProyectosID" />
+    </Key>
+    <Property Name="ProyectosID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientesID" Type="Int32" Nullable="false" />
+    <Property Name="NombreProyecto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DescripcionProyecto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Clientes" Relationship="Self.FK_dbo_Proyectos_dbo_Clientes_ClientesID" FromRole="Proyectos" ToRole="Clientes" />
+  </EntityType>
+  <Association Name="FK_dbo_DireccionesClientes_dbo_Clientes_ClientesID">
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DireccionesClientes" Type="Self.DireccionesClientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="ClientesID" />
+      </Principal>
+      <Dependent Role="DireccionesClientes">
+        <PropertyRef Name="ClientesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Proyectos_dbo_Clientes_ClientesID">
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="ClientesID" />
+      </Principal>
+      <Dependent Role="Proyectos">
+        <PropertyRef Name="ClientesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_DireccionesClientes_dbo_Direcciones_Direcciones_DireccionesID">
+    <End Role="Direcciones" Type="Self.Direcciones" Multiplicity="0..1" />
+    <End Role="DireccionesClientes" Type="Self.DireccionesClientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Direcciones">
+        <PropertyRef Name="DireccionesID" />
+      </Principal>
+      <Dependent Role="DireccionesClientes">
+        <PropertyRef Name="Direcciones_DireccionesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Clientes" EntityType="Self.Clientes" />
+    <EntitySet Name="Direcciones" EntityType="Self.Direcciones" />
+    <EntitySet Name="DireccionesClientes" EntityType="Self.DireccionesClientes" />
+    <EntitySet Name="Proyectos" EntityType="Self.Proyectos" />
+    <AssociationSet Name="FK_dbo_DireccionesClientes_dbo_Clientes_ClientesID" Association="Self.FK_dbo_DireccionesClientes_dbo_Clientes_ClientesID">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="DireccionesClientes" EntitySet="DireccionesClientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Proyectos_dbo_Clientes_ClientesID" Association="Self.FK_dbo_Proyectos_dbo_Clientes_ClientesID">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Proyectos" EntitySet="Proyectos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_DireccionesClientes_dbo_Direcciones_Direcciones_DireccionesID" Association="Self.FK_dbo_DireccionesClientes_dbo_Direcciones_Direcciones_DireccionesID">
+      <End Role="Direcciones" EntitySet="Direcciones" />
+      <End Role="DireccionesClientes" EntitySet="DireccionesClientes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

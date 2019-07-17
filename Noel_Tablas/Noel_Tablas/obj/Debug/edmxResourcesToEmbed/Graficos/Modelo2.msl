@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EjemploModel1StoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="Clientes">
+      <EntityTypeMapping TypeName="EjemploModel1.Clientes">
+        <MappingFragment StoreEntitySet="Clientes">
+          <ScalarProperty Name="ClientesID" ColumnName="ClientesID" />
+          <ScalarProperty Name="CedulaCliente" ColumnName="CedulaCliente" />
+          <ScalarProperty Name="NombreCliente" ColumnName="NombreCliente" />
+          <ScalarProperty Name="ClienteDesde" ColumnName="ClienteDesde" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Direcciones">
+      <EntityTypeMapping TypeName="EjemploModel1.Direcciones">
+        <MappingFragment StoreEntitySet="Direcciones">
+          <ScalarProperty Name="DireccionesID" ColumnName="DireccionesID" />
+          <ScalarProperty Name="CallePrincipal" ColumnName="CallePrincipal" />
+          <ScalarProperty Name="CalleSecundaria" ColumnName="CalleSecundaria" />
+          <ScalarProperty Name="Sector" ColumnName="Sector" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DireccionesClientes">
+      <EntityTypeMapping TypeName="EjemploModel1.DireccionesClientes">
+        <MappingFragment StoreEntitySet="DireccionesClientes">
+          <ScalarProperty Name="DireccionesClientesID" ColumnName="DireccionesClientesID" />
+          <ScalarProperty Name="ClientesID" ColumnName="ClientesID" />
+          <ScalarProperty Name="DireccionesID" ColumnName="DireccionesID" />
+          <ScalarProperty Name="DireccionDesde" ColumnName="DireccionDesde" />
+          <ScalarProperty Name="Direcciones_DireccionesID" ColumnName="Direcciones_DireccionesID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Proyectos">
+      <EntityTypeMapping TypeName="EjemploModel1.Proyectos">
+        <MappingFragment StoreEntitySet="Proyectos">
+          <ScalarProperty Name="ProyectosID" ColumnName="ProyectosID" />
+          <ScalarProperty Name="ClientesID" ColumnName="ClientesID" />
+          <ScalarProperty Name="NombreProyecto" ColumnName="NombreProyecto" />
+          <ScalarProperty Name="DescripcionProyecto" ColumnName="DescripcionProyecto" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

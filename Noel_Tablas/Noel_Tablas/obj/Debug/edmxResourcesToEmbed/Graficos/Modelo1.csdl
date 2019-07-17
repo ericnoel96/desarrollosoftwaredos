@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EjemploModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="ClientesID" />
+    </Key>
+    <Property Name="ClientesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CedulaCliente" Type="Int32" Nullable="false" />
+    <Property Name="NombreCliente" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClienteDesde" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Direcciones">
+    <Key>
+      <PropertyRef Name="DireccionesID" />
+    </Key>
+    <Property Name="DireccionesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CallePrincipal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CalleSecundaria" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Sector" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DireccionesClientes">
+    <Key>
+      <PropertyRef Name="DireccionesClientesID" />
+    </Key>
+    <Property Name="DireccionesClientesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientesID" Type="Int32" Nullable="false" />
+    <Property Name="DireccionesID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DireccionDesde" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Proyectos">
+    <Key>
+      <PropertyRef Name="ProyectosID" />
+    </Key>
+    <Property Name="ProyectosID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientesID" Type="Int32" Nullable="false" />
+    <Property Name="NombreProyecto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DescripcionProyecto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Clientes" EntityType="Self.Clientes" />
+    <EntitySet Name="Direcciones" EntityType="Self.Direcciones" />
+    <EntitySet Name="DireccionesClientes" EntityType="Self.DireccionesClientes" />
+    <EntitySet Name="Proyectos" EntityType="Self.Proyectos" />
+  </EntityContainer>
+</Schema>

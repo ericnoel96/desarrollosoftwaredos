@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EjemploModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="ClientesID" />
+    </Key>
+    <Property Name="ClientesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CedulaCliente" Type="int" Nullable="false" />
+    <Property Name="NombreCliente" Type="nvarchar(max)" />
+    <Property Name="ClienteDesde" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Direcciones">
+    <Key>
+      <PropertyRef Name="DireccionesID" />
+    </Key>
+    <Property Name="DireccionesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CallePrincipal" Type="nvarchar(max)" />
+    <Property Name="CalleSecundaria" Type="nvarchar(max)" />
+    <Property Name="Sector" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="DireccionesClientes">
+    <Key>
+      <PropertyRef Name="DireccionesClientesID" />
+    </Key>
+    <Property Name="DireccionesClientesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientesID" Type="int" Nullable="false" />
+    <Property Name="DireccionesID" Type="nvarchar(max)" />
+    <Property Name="DireccionDesde" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Proyectos">
+    <Key>
+      <PropertyRef Name="ProyectosID" />
+    </Key>
+    <Property Name="ProyectosID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientesID" Type="int" Nullable="false" />
+    <Property Name="NombreProyecto" Type="nvarchar(max)" />
+    <Property Name="DescripcionProyecto" Type="nvarchar(max)" />
+    <Property Name="FechaInicio" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="EjemploModelStoreContainer">
+    <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Direcciones" EntityType="Self.Direcciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DireccionesClientes" EntityType="Self.DireccionesClientes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Proyectos" EntityType="Self.Proyectos" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

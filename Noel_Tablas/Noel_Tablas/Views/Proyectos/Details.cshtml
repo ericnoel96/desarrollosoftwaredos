@@ -1,0 +1,50 @@
+﻿@model Noel_Tablas.Models.Proyectos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Proyectos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Clientes.NombreCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clientes.NombreCliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreProyecto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreProyecto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescripcionProyecto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionProyecto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaInicio)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProyectosID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
